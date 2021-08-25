@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+  <t t-extend="XmlReceipt">
+      <t t-jquery="receipt" t-operation="append">
+          <t t-foreach="paymentlines" t-as="paymentline">
+            <t t-if="paymentline.cardholder_receipt">
+              <br />
+              <t t-raw="paymentline.cardholder_receipt" />
+              <!-- <t t-log="paymentline.cardholder_receipt"/> -->
+            </t>
+          </t>
+      </t>
+  </t>
+
+  <t t-extend="PosTicket">
+    <!-- <t t-jquery="t[t-if='receipt.footer']" t-operation="before"> -->
+    <t t-jquery="div[class='pos-sale-ticket']" t-operation="append">
+      <t t-foreach="order.get_paymentlines()" t-as="paymentline">
+            <t t-if="paymentline.cardholder_receipt">
+              <br />
+              <div class="pos-payment-terminal-receipt"><t t-raw="paymentline.cardholder_receipt" /></div>
+              <!-- <t t-log="paymentline.cardholder_receipt"/> -->
+          </t>
+      </t>
+    </t>
+  </t>
+
+</templates>

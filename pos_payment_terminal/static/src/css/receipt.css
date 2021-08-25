@@ -1,0 +1,9 @@
+.pos .pos-payment-terminal-receipt {
+    text-align: center;
+    white-space: pre;
+}
+
+.pos .pos-payment-terminal-receipt pre{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
