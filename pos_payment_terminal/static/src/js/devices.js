@@ -43,6 +43,10 @@ odoo.define('pos_payment_terminal.devices', function (require) {
                                 if ('payment_terminal_return_message' in answer) {
                                     line.set_payment_terminal_return_message(answer.payment_terminal_return_message);
                                 }
+                                //Set receipt info
+                                if ('cardholder_receipt' in answer) {
+                                    line.set_cardholder_receipt(answer.cardholder_receipt);
+                                }
                                 screen.order_changes();
                                 if(screen.setup_auto_validation_timer !== undefined) {
                                     screen.setup_auto_validation_timer();

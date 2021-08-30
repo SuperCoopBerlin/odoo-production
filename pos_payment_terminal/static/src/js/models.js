@@ -16,7 +16,17 @@ odoo.define('pos_payment_terminal.models', function (require) {
         set_payment_terminal_return_message: function(message) {
             this.payment_terminal_return_message = message;
             this.trigger('change',this);
-        }
+        },
+        set_cardholder_receipt: function(receipt_lines) {
+            if (this.cardholder_receipt){
+                this.cardholder_receipt += '<pre>'
+            } else {
+                this.cardholder_receipt = '<pre>'
+            }
+            this.cardholder_receipt += receipt_lines.join('</pre><pre>');
+            this.cardholder_receipt += '</pre>'
+            this.trigger('change', this);
+        },
     });
 
 });
