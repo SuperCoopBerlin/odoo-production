@@ -29,7 +29,9 @@ odoo.define('pos_payment_terminal.devices', function (require) {
             var data = self.get_data_send(order, line, currency_iso);
             if (this.wait_terminal_answer()) {
                 screen.$('.delete-button').css('display', 'none');
-                this.message('payment_terminal_transaction_start_with_return', {'payment_info' : JSON.stringify(data)}, { timeout: 240000 }).then(function (answer) {
+                var text_button_next = screen.$('.next')[0].innerText
+                screen.$('.next')[0].innerText = "Please, wait...";
+                this.message('payment_terminal_transaction_start_with_return', {'payment_info' : JSON.stringify(data)}, { timeout: 60000 }).then(function (answer) {
                     if (answer) {
                         var transaction_result = answer['transaction_result'];
                         if (transaction_result == '0') {
@@ -70,11 +72,13 @@ odoo.define('pos_payment_terminal.devices', function (require) {
                         } else {
                             screen.transaction_error();
                             screen.$('.delete-button').css('display', 'block');
+                            screen.$('.next')[0].innerText = text_button_next;
                             //$('.back').show();
                         }
                     } else {
                         screen.transaction_error();
                         screen.$('.delete-button').css('display', 'block');
+                        screen.$('.next')[0].innerText = text_button_next;
                     }
                 });
             } else {
