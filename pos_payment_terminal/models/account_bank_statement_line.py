@@ -27,6 +27,10 @@ class AccountBankStatementLine(models.Model):
     payment_terminal_return_message = fields.Char(
         string='payment terminal return message'
     )
-    remittance_number = fields.Char(string='Remittance number')
-    transaction_number = fields.Char(string='Transaction number')
-    card_number = fields.Char(string='Card number')
+    merchant_receipt = fields.Html(string='Merchant receipt')
+    cardholder_receipt = fields.Html(string='Cardholder receipt')
+
+    card_name = fields.Char(string='Card name')
+    tid = fields.Char(string='Terminal ID')
+    receipt_number = fields.Char(string='Receipt number')
+    trace_number = fields.Char(string='Trace number')

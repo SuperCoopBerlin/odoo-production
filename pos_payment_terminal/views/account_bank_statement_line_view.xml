@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_bank_statement_line_form" model="ir.ui.view">
-        <field name="name">bank.statement.line.form</field>
-        <field name="model">account.bank.statement.line</field>
-        <field name="inherit_id" ref="account.view_bank_statement_line_form"/>
-        <field name="priority">8</field>
-        <field name="arch" type="xml">
-            <field name="amount" position="after">
-                <field name="remittance_number"
-                       groups="pos_payment_terminal.payment_terminal_return"
-                       attrs="{'readonly':[('payment_terminal_return_message','!=', False)]}"/>
-                <field name="transaction_number"
-                       groups="pos_payment_terminal.payment_terminal_return"
-                       attrs="{'readonly':[('payment_terminal_return_message','!=',False)]}"/>
-                <field name="card_number"
-                       groups="pos_payment_terminal.payment_terminal_return"
-                       attrs="{'readonly':[('payment_terminal_return_message','!=', False)]}"/>
-                <field name="payment_terminal_return_message" invisible="1"/>
-            </field>
-        </field>
+       <field name="name">bank.statement.line.form</field>
+       <field name="model">account.bank.statement.line</field>
+       <field name="inherit_id" ref="account.view_bank_statement_line_form"/>
+       <field name="priority">8</field>
+       <field name="arch" type="xml">
+              <xpath expr="//group" position="after">
+                     <group col="4">
+                            <field name="card_name"
+                                   attrs="{'readonly':[('card_name','!=', False)]}"/>
+                            <field name="tid"
+                                   attrs="{'readonly':[('tid','!=', False)]}"/>
+                            <field name="receipt_number"
+                                   attrs="{'readonly':[('receipt_number','!=', False)]}"/>
+                            <field name="trace_number"
+                                   attrs="{'readonly':[('trace_number','!=', False)]}"/>
+                            <field name="merchant_receipt"
+                                   attrs="{'readonly':[('merchant_receipt','!=', False)]}"/>
+                            <field name="cardholder_receipt"
+                                   attrs="{'readonly':[('cardholder_receipt','!=', False)]}"/>
+                            <field name="payment_terminal_return_message" invisible="1"/>
+                     </group>
+              </xpath>
+       </field>
     </record>
 
     <record id="view_bank_statement_form" model="ir.ui.view">
@@ -29,16 +34,10 @@
         <field name="arch" type="xml">
             <xpath expr="/form/sheet/notebook/page/field[@name='line_ids']/tree/field[@name='partner_id']"
                    position="after">
-                <field name="remittance_number"
-                       groups="pos_payment_terminal.payment_terminal_return"
-                       attrs="{'readonly':[('payment_terminal_return_message','!=', False)]}"/>
-                <field name="transaction_number"
-                       groups="pos_payment_terminal.payment_terminal_return"
-                       attrs="{'readonly':[('payment_terminal_return_message','!=',False)]}"/>
-                <field name="card_number"
-                       groups="pos_payment_terminal.payment_terminal_return"
-                       attrs="{'readonly':[('payment_terminal_return_message','!=', False)]}"/>
-                <field name="payment_terminal_return_message" invisible="1"/>
+                     <field name="card_name"
+                            attrs="{'readonly':[('card_name','!=', False)]}"/>
+                     <field name="tid"
+                            attrs="{'readonly':[('tid','!=', False)]}"/>
             </xpath>
         </field>
     </record>
