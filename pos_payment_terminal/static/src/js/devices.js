@@ -32,98 +32,98 @@ odoo.define('pos_payment_terminal.devices', function (require) {
 
                 //this.message('payment_terminal_transaction_start_with_return', {'payment_info' : JSON.stringify(data)}, { timeout: 240000 }).then(function (answer) { 
                     //console.log(answer)
-                        var answer = 
-                        {
-                        "pos_number": "xxxxxxxx",
-                        "transaction_result": 0,
-                        "amount_msg": "000000000100",
-                        "payment_mode": "Girocard",
-                        "payment_terminal_return_message": {
-                            "result_code": [
-                            0
-                            ],
-                            "amount": "000000000100",
-                            "currency_code": "0978",
-                            "trace_number": "000052",
-                            "time": "081836",
-                            "date_day": "0827",
-                            "tid": "xxxxxxxx",
-                            "card_number": "H%\u0011\u0000\u0010`B\u0013u?",
-                            "card_sequence_number": "0000",
-                            "receipt": "0031",
-                            "aid": [
-                            54,
-                            56,
-                            53,
-                            55,
-                            56,
-                            49,
-                            0,
-                            0
-                            ],
-                            "type": [
-                            112
-                            ],
-                            "card_expire": "2212",
-                            "card_type": [
-                            5
-                            ],
-                            "card_name": "Girocard",
-                            "additional": "Autorisierung erfolgt",
-                            "turnover": "000031",
-                        },
-                        "merchant_receipt": [
-                            "* *  Händlerbeleg  * *",
-                            "SuperCoop Berlin eG",
-                            "Oudenarder Straße 16",
-                            "13347 Berlin",
-                            "supercoop.de",
-                            "Datum:            27.08.2021",
-                            "Uhrzeit:        08:18:36 Uhr",
-                            "Beleg-Nr.               0031",
-                            "Trace-Nr.             000052",
-                            "Kartenzahlung",
-                            "kontaktlos",
-                            "girocard",
-                            "Nr. ###############3753 0000",
-                            "gültig bis             12/22",
-                            "Genehmigungs-Nr.      xxxxxx",
-                            "Terminal-ID         xxxxxxxx",
-                            "Pos-Info           00 075 00",
-                            "AS-Zeit 27.08.     08:18 Uhr",
-                            "Weitere Daten /00000xxxxx//A",
-                            "000000xxx/020xxx/",
-                            "Betrag EUR              1,00",
-                            "Autorisierung erfolgt",
-                            "Bitte Beleg aufbewahren",
+                    var answer = 
+                    {
+                    "pos_number": "xxxxxxxx",
+                    "transaction_result": 0,
+                    "amount_msg": data['amount'] * 100,
+                    "payment_mode": "Girocard",
+                    "payment_terminal_return_message": {
+                        "result_code": [
+                        0
                         ],
-                        "cardholder_receipt": [
-                            "* *  Kundenbeleg  * *",
-                            "SuperCoop Berlin eG",
-                            "Oudenarder Straße 16",
-                            "13347 Berlin",
-                            "supercoop.de",
-                            "Datum:            27.08.2021",
-                            "Uhrzeit:        08:18:36 Uhr",
-                            "Beleg-Nr.               0031",
-                            "Trace-Nr.             000052",
-                            "Kartenzahlung",
-                            "kontaktlos",
-                            "girocard",
-                            "Nr. ###############3753 0000",
-                            "gültig bis             12/22",
-                            "Genehmigungs-Nr.      xxxxxx",
-                            "Terminal-ID         xxxxxxxx",
-                            "Pos-Info           00 075 00",
-                            "AS-Zeit 27.08.     08:18 Uhr",
-                            "Weitere Daten /00000xxxxx//A",
-                            "000000xxx/020xxx/",
-                            "Betrag EUR              1,00",
-                            "Autorisierung erfolgt",
-                            "Bitte Beleg aufbewahren",
-                        ]
-                        }
-                        console.log(answer)
+                        "amount": "000000000100",
+                        "currency_code": "0978",
+                        "trace_number": "000052",
+                        "time": "081836",
+                        "date_day": "0827",
+                        "tid": "xxxxxxxx",
+                        "card_number": "H%\u0011\u0000\u0010`B\u0013u?",
+                        "card_sequence_number": "0000",
+                        "receipt": "0031",
+                        "aid": [
+                        54,
+                        56,
+                        53,
+                        55,
+                        56,
+                        49,
+                        0,
+                        0
+                        ],
+                        "type": [
+                        112
+                        ],
+                        "card_expire": "2212",
+                        "card_type": [
+                        5
+                        ],
+                        "card_name": "Girocard",
+                        "additional": "Autorisierung erfolgt",
+                        "turnover": "000031",
+                    },
+                    "merchant_receipt": [
+                        "* *  Händlerbeleg  * *",
+                        "SuperCoop Berlin eG",
+                        "Oudenarder Straße 16",
+                        "13347 Berlin",
+                        "supercoop.de",
+                        "Datum:            27.08.2021",
+                        "Uhrzeit:        08:18:36 Uhr",
+                        "Beleg-Nr.               0031",
+                        "Trace-Nr.             000052",
+                        "Kartenzahlung",
+                        "kontaktlos",
+                        "girocard",
+                        "Nr. ###############3753 0000",
+                        "gültig bis             12/22",
+                        "Genehmigungs-Nr.      xxxxxx",
+                        "Terminal-ID         xxxxxxxx",
+                        "Pos-Info           00 075 00",
+                        "AS-Zeit 27.08.     08:18 Uhr",
+                        "Weitere Daten /00000xxxxx//A",
+                        "000000xxx/020xxx/",
+                        "Betrag EUR              1,00",
+                        "Autorisierung erfolgt",
+                        "Bitte Beleg aufbewahren",
+                    ],
+                    "cardholder_receipt": [
+                        "* *  Kundenbeleg  * *",
+                        "SuperCoop Berlin eG",
+                        "Oudenarder Straße 16",
+                        "13347 Berlin",
+                        "supercoop.de",
+                        "Datum:            27.08.2021",
+                        "Uhrzeit:        08:18:36 Uhr",
+                        "Beleg-Nr.               0031",
+                        "Trace-Nr.             000052",
+                        "Kartenzahlung",
+                        "kontaktlos",
+                        "girocard",
+                        "Nr. ###############3753 0000",
+                        "gültig bis             12/22",
+                        "Genehmigungs-Nr.      xxxxxx",
+                        "Terminal-ID         xxxxxxxx",
+                        "Pos-Info           00 075 00",
+                        "AS-Zeit 27.08.     08:18 Uhr",
+                        "Weitere Daten /00000xxxxx//A",
+                        "000000xxx/020xxx/",
+                        "Betrag EUR              1,00",
+                        "Autorisierung erfolgt",
+                        "Bitte Beleg aufbewahren",
+                    ]
+                    }
+                    console.log(answer)
                     if (answer) {
                         var transaction_result = answer['transaction_result'];
                         if (transaction_result == '0') {
