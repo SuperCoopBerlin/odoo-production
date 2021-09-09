@@ -134,12 +134,22 @@ odoo.define('pos_payment_terminal.devices', function (require) {
                             //var amount_in = answer['amount_msg'] / 100;
                             if (!amount_in == 0) {
                                 line.set_amount(amount_in);
+
                                 if ('payment_terminal_return_message' in answer) {
                                     line.set_payment_terminal_return_message(answer.payment_terminal_return_message);
+
+                                    line.set_card_name(answer.payment_terminal_return_message.card_name);
+                                    line.set_tid(answer.payment_terminal_return_message.tid);
+                                    line.set_receipt_number(answer.payment_terminal_return_message.receipt);
+                                    line.set_trace_number(answer.payment_terminal_return_message.trace_number);
                                 }
+
                                 //Set receipt info
                                 if ('cardholder_receipt' in answer) {
                                     line.set_cardholder_receipt(answer.cardholder_receipt);
+                                }
+                                if ('merchant_receipt' in answer) {
+                                    line.set_merchant_receipt(answer.merchant_receipt);
                                 }
                                 screen.order_changes();
                                 if(screen.setup_auto_validation_timer !== undefined) {

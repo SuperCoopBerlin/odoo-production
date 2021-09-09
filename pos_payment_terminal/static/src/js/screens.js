@@ -17,6 +17,7 @@ odoo.define('pos_payment_terminal.screens', function (require) {
             }
         },
         transaction_error: function() {
+            $('.back').show();
             this.gui.show_popup('error',{
                 'title': _t('Transaction error'),
                 'body':  _t('Please, try it again.'),
