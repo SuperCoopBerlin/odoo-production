@@ -32,6 +32,7 @@ odoo.define('pos_payment_terminal.devices', function (require) {
                 var text_button_next = screen.$('.next')[0].innerText
                 screen.$('.next')[0].innerText = "Please, wait...";
                 this.message('payment_terminal_transaction_start_with_return', {'payment_info' : JSON.stringify(data)}, { timeout: 60000 }).then(function (answer) {
+                    screen.$('.next')[0].innerText = text_button_next;
                     if (answer) {
                         var transaction_result = answer['transaction_result'];
                         if (transaction_result == '0') {
@@ -63,23 +64,17 @@ odoo.define('pos_payment_terminal.devices', function (require) {
                                 if(screen.setup_auto_validation_timer !== undefined) {
                                     screen.setup_auto_validation_timer();
                                 }
-                                // screen.render_paymentlines();
                                 var amount_in_formatted = screen.format_currency_no_symbol(amount_in);
                                 screen.$('.paymentline.selected .edit').text(amount_in_formatted);
                                 screen.$('.delete-button').css('display', 'none');
-                                //screen.$('.automatic-cashdrawer-transaction-start').css('display', 'none');
                             }
                         } else {
                             screen.transaction_error();
                             screen.$('.delete-button').css('display', 'block');
-                            screen.$('.next')[0].innerText = text_button_next;
-                            //$('.back').show();
                         }
                     } else {
                         screen.transaction_error();
-                        screen.$('.delete-button').css('display', 'block');
-                        screen.$('.next')[0].innerText = text_button_next;
-                    }
+                        screen.$('.delete-button').css('display', 'block');                    }
                 });
             } else {
                 this.message('payment_terminal_transaction_start', {'payment_info' : JSON.stringify(data)});
