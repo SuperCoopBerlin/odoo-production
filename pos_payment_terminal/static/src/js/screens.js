@@ -30,11 +30,25 @@ odoo.define('pos_payment_terminal.screens', function (require) {
             }
         },
         click_paymentmethods: function() {
-            var paymentlines = this.pos.get_order().get_paymentlines();
+            var order = this.pos.get_order();
+            var paymentlines = order.get_paymentlines();
+
             if(paymentlines.length == 0){
                 this._super.apply(this, arguments);
             } else {
-                //Do nothing -> do not create new paymentline
+                if (!order.is_paid()){
+                    var open_paymentline = false;
+                    for (var i = 0; i < paymentlines.length; i++) {
+                        if (paymentlines[i].get_amount() == 0) {
+                        open_paymentline = true;
+                        }
+                    }
+                
+                    if (! open_paymentline) {
+                            //Order not (fully) paid and no empty paymentline-> allow to add new line
+                            this._super.apply(this, arguments);
+                        }
+                }
             }
         },
         payment_input: function() {
