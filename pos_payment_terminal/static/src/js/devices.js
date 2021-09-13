@@ -28,10 +28,10 @@ odoo.define('pos_payment_terminal.devices', function (require) {
             var line = order.selected_paymentline;
             var data = self.get_data_send(order, line, currency_iso);
             if (this.wait_terminal_answer()) {
-                screen.$('.delete-button').css('display', 'none');
                 var text_button_next = screen.$('.next')[0].innerText
                 screen.$('.next')[0].innerText = "Please, wait...";
-                this.message('payment_terminal_transaction_start_with_return', {'payment_info' : JSON.stringify(data)}, { timeout: 60000 }).then(function (answer) {
+
+                this.message('payment_terminal_transaction_start_with_return', {'payment_info' : JSON.stringify(data)}, { timeout: 5000 }).then(function (answer) {
                     screen.$('.next')[0].innerText = text_button_next;
                     if (answer) {
                         var transaction_result = answer['transaction_result'];
@@ -67,14 +67,28 @@ odoo.define('pos_payment_terminal.devices', function (require) {
                                 var amount_in_formatted = screen.format_currency_no_symbol(amount_in);
                                 screen.$('.paymentline.selected .edit').text(amount_in_formatted);
                                 screen.$('.delete-button').css('display', 'none');
+
+                                if (screen.gui.current_popup) {
+                                    screen.gui.current_popup.click_cancel();
+                                }
                             }
-                        } else {
-                            screen.transaction_error();
-                            screen.$('.delete-button').css('display', 'block');
+                        } else { //Transaction error
+                            if ('error_code' in answer) {
+                                var error_code = answer['error_code'];
+                                var error_msg = answer['error_msg'];
+                            } else {
+                                var error_code = 99;
+                                var error_msg = _t("No error message specified");
+                            }
+                            screen.transaction_error(error_msg);
                         }
-                    } else {
-                        screen.transaction_error();
-                        screen.$('.delete-button').css('display', 'block');                    }
+                    } else { //PT unavailable
+                        screen.transaction_error(_t("Payment terminal not reachable"));
+                    }
+                },
+                function(reason){ //Exception or timeout
+                    screen.$('.next')[0].innerText = text_button_next;
+                    screen.transaction_error(_t("Exception or timeout when trying to reach hardware proxy"));
                 });
             } else {
                 this.message('payment_terminal_transaction_start', {'payment_info' : JSON.stringify(data)});
