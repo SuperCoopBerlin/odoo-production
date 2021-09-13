@@ -34,7 +34,9 @@
         'security/security.xml',
         'views/account_bank_statement_line_view.xml'
     ],
-    "qweb": ["static/src/xml/receipt.xml"],
+    "qweb": ["static/src/xml/receipt.xml",
+             "static/src/xml/paymentlines.xml"
+    ],
     'demo': ['demo/pos_config.xml'],
     'installable': True,
 }
