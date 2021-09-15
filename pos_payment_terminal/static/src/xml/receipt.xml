@@ -4,6 +4,7 @@
   <t t-extend="XmlReceipt">
       <!-- <t t-jquery="receipt" t-operation="append"> -->
       <t t-jquery="div[class='before-footer']" t-operation="before">
+          <div>--------------------------------</div>
           <t t-foreach="paymentlines" t-as="paymentline">
             <t t-if="paymentline.cardholder_receipt">
               <br />
@@ -17,6 +18,7 @@
   <t t-extend="PosTicket">
     <!-- <t t-jquery="div[class='pos-sale-ticket']" t-operation="append"> -->
     <t t-jquery="table[class='receipt-change']" t-operation="after">
+      <div>--------------------------------</div>
       <t t-foreach="order.get_paymentlines()" t-as="paymentline">
             <t t-if="paymentline.cardholder_receipt">
               <br />
