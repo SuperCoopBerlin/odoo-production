@@ -7,6 +7,7 @@
             <script type="text/javascript" src="/pos_payment_terminal/static/src/js/screens.js"></script>
             <script type="text/javascript" src="/pos_payment_terminal/static/src/js/models.js"></script>
             <script type="text/javascript" src="/pos_payment_terminal/static/src/js/devices.js"></script>
+            <link rel="stylesheet" href="/pos_payment_terminal/static/src/css/paymentlines.css" />
       </xpath>
     </template>
 
