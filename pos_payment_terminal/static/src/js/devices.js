@@ -38,9 +38,9 @@ odoo.define('pos_payment_terminal.devices', function (require) {
                         if (transaction_result == '0') {
                             // This means that the operation was a success
                             // We get amount and set the amount in this line
-                            var rounding = self.pos.currency.rounding;
-                            var amount_in = round_pr(answer['amount_msg'] / 100, rounding);
-                            //var amount_in = answer['amount_msg'] / 100;
+                            //var rounding = self.pos.currency.rounding;
+                            //var amount_in = round_pr(answer['amount_msg'] / 100, rounding);
+                            var amount_in = answer['amount_msg'] / 100;
                             if (!amount_in == 0) {
                                 line.set_amount(amount_in);
 
