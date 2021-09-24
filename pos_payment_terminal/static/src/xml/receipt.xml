@@ -7,7 +7,6 @@
           <div>--------------------------------</div>
           <t t-foreach="paymentlines" t-as="paymentline">
             <t t-if="paymentline.cardholder_receipt">
-              <br />
               <t t-raw="paymentline.cardholder_receipt" />
               <!-- <t t-log="paymentline.cardholder_receipt"/> -->
             </t>
@@ -21,7 +20,6 @@
       <div>--------------------------------</div>
       <t t-foreach="order.get_paymentlines()" t-as="paymentline">
             <t t-if="paymentline.cardholder_receipt">
-              <br />
               <div class="pos-payment-terminal-receipt"><t t-raw="paymentline.cardholder_receipt" /></div>
               <!-- <t t-log="paymentline.cardholder_receipt"/> -->
           </t>
